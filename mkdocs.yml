@@ -2,5 +2,6 @@ site_name: Ansible Tips and Tricks
 
 pages:
 - ['index.md', 'Home']
+- ['os-dependent-tasks/variables.md', 'Operating System Dependent Tasks']
 
 copyright: Copyright &copy; 2016
