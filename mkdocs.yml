@@ -1,0 +1,6 @@
+site_name: Ansible Tips and Tricks
+
+pages:
+- ['index.md', 'Home']
+
+copyright: Copyright &copy; 2016
