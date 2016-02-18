@@ -1,10 +1,8 @@
-# Operating System Dependent Tasks
-
 When working with multiple OSes, inevitably there will be packages, configuration files and service calls that are vastly different than one another.  There can even be instances in which sub-versions of OSes can have major differences, such as `service` vs. `systemctl` in CentOS 6 vs. 7
 
 Defined here are different ways to handle these isssues both in the same `playbook` or `play` or by separating out tasks to other task files.
 
-## Task separation via Variables
+# Task separation via Variables
 
 This method pulls in variables based on the client's OS and uses those variables specific to that machine's needs.
 
@@ -20,7 +18,7 @@ A solution to this problem uses the Ansible module `include_vars` with the loopi
   tags: vars
 ```
 
-## Task separation via Includes
+# Task separation via Includes
 
 Alternatively, one could separate tasks into a set of tasks that are OS specific, then come back and finish execution of the `playbook`
 
