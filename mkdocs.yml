@@ -4,6 +4,7 @@ pages:
 - Home: 'index.md'
 - Ansible:
   - 'Installing Ansible': 'ansible/install.md'
+  - 'Running Commands': 'ansible/commands.md'
 - Writing code:
   - 'Operating System Dependent Tasks': 'os-dependent-tasks/variables.md'
 
