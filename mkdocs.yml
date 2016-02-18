@@ -3,9 +3,9 @@ site_name: Ansible Tips and Tricks
 pages:
 - Home: 'index.md'
 - Ansible:
-	- 'Installing Ansible': 'ansible/install.md'
+  - 'Installing Ansible': 'ansible/install.md'
 - Writing code:
-	- 'Operating System Dependent Tasks': 'os-dependent-tasks/variables.md'
+  - 'Operating System Dependent Tasks': 'os-dependent-tasks/variables.md'
 
 
 copyright: Copyright &copy; 2016
