@@ -6,23 +6,23 @@ The basic syntax consists of `ansible` then the host group from `hosts` to run a
 
 ### Simple Modules
 
-* Ping hosts
+Ping hosts
   
-  ```
-  ansible <HOST_GROUP> -m ping
-  ```
+```
+ansible <HOST_GROUP> -m ping
+```
 
-* Display gathered facts
+Display gathered facts
   
-  ```
-  ansible <HOST_GROUP> -m setup | less
-  ```
+```
+ansible <HOST_GROUP> -m setup | less
+```
 
-* Filter gathered facts
+Filter gathered facts
   
-  ```
-  ansible <HOST_GROUP> -m setup -a "filter=ansible_distribution*"
-  ```
+```
+ansible <HOST_GROUP> -m setup -a "filter=ansible_distribution*"
+```
 
 ### Advanced Modules
   
