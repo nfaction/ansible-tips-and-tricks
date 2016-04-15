@@ -14,11 +14,10 @@ A solution to this problem uses the Ansible module `include_vars` with the loopi
   with_first_found:
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
     - "{{ ansible_distribution }}.yml"
-    - "{{ ansible_os_family }}.yml"
   tags: vars
 ```
 
-# Task separation via Includes
+# Task separation via Includes (Depricated in 2.0)
 
 Alternatively, one could separate tasks into a set of tasks that are OS specific, then come back and finish execution of the `playbook`
 
