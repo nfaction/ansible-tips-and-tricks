@@ -26,7 +26,21 @@ You can use Ansible's pseudo looping method to install multiple packages
     - vim
     - tmux
     - mosh
-    - apache2
+```
+
+# Installing System Updates
+Please note that the modules for `apt` and `yum` have different options that make it impossible to use the method above of using the `action:`  In order to do this, one must use the `when:` to perform their associated module per OS.
+
+`yum` does not have a update module option, so it basically check to see if all packages are up to date.  `apt` upgrades to dist.
+
+```
+- name: install system updates for centos systems
+  yum: name=* state=latest update_cache=yes
+  when: ansible_distribution == "CentOS"
+
+- name: install system updates for ubuntu systems
+  apt: upgrade=dist update_cache=yes
+  when: ansible_distribution == "Ubuntu"
 ```
 
 # Adding/Removing Repositories
