@@ -52,7 +52,34 @@ Sometimes it is required that you first configure a non-standard repository befo
 <http://docs.ansible.com/ansible/apt_key_module.html>
 <http://docs.ansible.com/ansible/apt_repository_module.html>
 
+```
+- name: add gnupg key for codership repo
+  apt-key: keyserver=keyserver.ubuntu.com id=BC19DDBA
+  
+- name: add repo
+  apt_repository: repo='deb http://ubuntu-cloud.archive.canonical.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }}-updates/liberty main' state=present
+
+```
+
 ## CentOS
 Be aware that this is only available via Ansible 2.1
 
 <http://docs.ansible.com/ansible/yum_repository_module.html>
+
+# Manually Adding Source List
+In some cases extra arguments are required to add a repository.  If this is the case, sometimes it is best just to use the `shell` module and run the command manually.  In other cases, it requires that a source list be built, which is usually best done via `template` modules.  See below.
+
+```
+- name: enable codership repo in yum
+  template: src=galera.repo.j2 dest=/etc/yum.repos.d/galera.repo
+```
+
+Template:
+
+```
+[galera]
+name = Galera
+baseurl = http://releases.galeracluster.com/{{ ansible_distribution | lower }}/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}
+gpgkey = http://releases.galeracluster.com/GPG-KEY-galeracluster.com
+gpgcheck = 1
+```
