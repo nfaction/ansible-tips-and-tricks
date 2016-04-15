@@ -4,9 +4,12 @@ pages:
 - Home: 'index.md'
 - Ansible:
   - 'Installing Ansible': 'ansible/install.md'
-  - 'Running Commands': 'ansible/commands.md'
+  - 'Running commands': 'ansible/commands.md'
+  - 'Host inventories': 'ansible/inventory.md'
 - Writing code:
   - 'Operating System Dependent Tasks': 'os-dependent-tasks/variables.md'
+  - 'Installing Software and Other Packages': 'os-dependent-tasks/installing_packages.md'
+  - 'Modifying files': 'modifying-files/modifying-files.md'
 
 
 copyright: Copyright &copy; 2016
