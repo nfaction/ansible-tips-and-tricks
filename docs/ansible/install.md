@@ -2,6 +2,17 @@ The instructions provided here is used to setup Ansible for managing other syste
 
 # Installation on the Ansible server
 
+## Using pip
+```
+pip install --upgrade pip virtualenv virtualenvwrapper
+virtualenv ansible2.0
+source ansible2.0/bin/activate
+pip install ansible
+pip install redis
+```
+
+## Using Git
+
 ```
 git clone git://github.com/ansible/ansible.git
 ```
