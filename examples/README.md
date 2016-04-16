@@ -1,0 +1,41 @@
+# Ansible Examples
+
+The examples presented here may have requirements on which version of Ansible is used, such as version 2.0 versus 1.9.  The simplest way to begin running these examples is to use a Python VirtualEnv and drop into the `ansible` directory here.
+
+## Installing Ansible Here
+
+From this directory, follow the instructions to install Ansible with Python Pip, then activate the environment and start running code.
+
+Steps to install:
+
+1. Download this repository
+
+	```
+	git clone https://github.com/cyverse/ansible-tips-and-tricks.git
+	```
+	
+1. Navigate to the `examples` directory
+
+	```
+	cd ansible-tips-and-tricks/examples
+	```
+	
+1. Follow installation steps for both Ansible 2.0 and 1.9 [here.](docs/ansible/install.md)
+
+1. Activate the Ansible Environment
+
+	```
+	source ansible<version2.0_OR_1.9>/bin/activate
+	```
+	
+1. Run example playbooks
+
+	```
+	ansible-playbook playbooks/<playbook>.yml -i hosts
+	```
+	
+1. Deactivate the environment
+
+	```
+	deactivate
+	```

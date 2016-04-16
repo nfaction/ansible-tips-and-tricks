@@ -3,11 +3,22 @@ The instructions provided here is used to setup Ansible for managing other syste
 # Installation on the Ansible server
 
 ## Using pip
+
+### Ansible 2.0
 ```
 pip install --upgrade pip virtualenv virtualenvwrapper
 virtualenv ansible2.0
 source ansible2.0/bin/activate
-pip install ansible
+pip install ansible==2.0.1.0
+pip install redis
+```
+
+### Ansible 1.9
+```
+pip install --upgrade pip virtualenv virtualenvwrapper
+virtualenv ansible1.9
+source ansible1.9/bin/activate
+pip install ansible==1.9.4
 pip install redis
 ```
 
