@@ -39,3 +39,19 @@ Steps to install:
 	```
 	deactivate
 	```
+	
+## Don't have a box to run Ansible against?
+
+Feel free to use `vagrant` to run a instance that can be used to deploy code.
+
+Follow these steps to get started:
+
+1. Install Virtualbox
+1. Install Vagrant: <https://www.vagrantup.com/docs/installation/>
+1. Start up Vagrant
+
+	```
+	cd vagrant
+	vagrant up
+	```
+	
