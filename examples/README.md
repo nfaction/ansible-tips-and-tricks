@@ -53,5 +53,41 @@ Follow these steps to get started:
 	```
 	cd vagrant
 	vagrant up
+	vagrant ssh
+	sudo su -
+	vi /root/.ssh/authorized_keys
+	<Insert your public key, save and exit>
+	exit
+	exit
+	cd ..
 	```
 	
+## Verify that Ansible is configured
+First ensure that the environment is set up and running and able to run these examples.  If you are planning to use a host other than the `vagrant` host provided, be sure to uncomment and set the IP and Username for the `remote_host` entry.
+
+Perform a simple `ping` test
+
+```
+ansible examples -m ping -i hosts
+```
+
+You should see this if things worked correctly:
+
+```
+vagrant-box | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+```
+
+If you do not see the above, but see this:
+
+```
+vagrant-box | UNREACHABLE! => {
+    "changed": false,
+    "msg": "SSH Error: data could not be sent to the remote host. Make sure this host can be reached over ssh",
+    "unreachable": true
+}
+```
+
+check your ssh keys and try again.
