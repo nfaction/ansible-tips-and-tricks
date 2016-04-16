@@ -91,3 +91,79 @@ vagrant-box | UNREACHABLE! => {
 ```
 
 check your ssh keys and try again.
+
+## Run NTP Example
+
+This example installs and configures NTP on your instance.
+
+Ensure that your Ansible environment has been loaded, and your `vagrant` box is "up" before running the steps below
+
+Run the `ntp.yml` playbook:
+
+```
+ansible-playbook playbooks/ntp.yml -i hosts
+```
+
+You should see something similar to this:
+
+```
+(ansible2.0):examples $ ansible-playbook playbooks/ntp.yml -i hosts
+
+PLAY [install and configure NTP] ***********************************************
+
+TASK [setup] *******************************************************************
+ok: [vagrant-box]
+
+TASK [ntp : gather os specific variables] **************************************
+ok: [vagrant-box] => (item=ansible-tips-and-tricks/examples/roles/ntp/vars/Ubuntu.yml)
+
+TASK [ntp : install ntp package] ***********************************************
+changed: [vagrant-box]
+
+TASK [ntp : verify that ntp is installed] **************************************
+ok: [vagrant-box]
+
+TASK [ntp : update system date manually] ***************************************
+skipping: [vagrant-box]
+
+TASK [ntp : update hardware clock manually] ************************************
+skipping: [vagrant-box]
+
+TASK [ntp : configure ntp] *****************************************************
+changed: [vagrant-box] => (item=ansible-tips-and-tricks/examples/roles/ntp/templates/Ubuntu.ntp.conf.j2)
+
+TASK [ntp : start ntp service] *************************************************
+ok: [vagrant-box]
+
+PLAY RECAP *********************************************************************
+vagrant-box                : ok=6    changed=2    unreachable=0    failed=0
+```
+
+Verify that NTP is actually running and installed:
+
+```
+ssh -p 2222 root@127.0.0.1 "date && ntpq -p"
+```
+
+You should see something similar to this:
+
+```
+Sat Apr 16 01:21:57 UTC 2016
+     remote           refid      st t when poll reach   delay   offset  jitter
+==============================================================================
+ colonialone.pqx 216.218.254.202  2 u    9   64    1   32.149    1.549   0.000
+ ha2.smatwebdesi 130.207.244.240  2 u   10   64    0    0.000    0.000   0.000
+ nox.prolixium.c 200.98.196.212   2 u    8   64    1   49.765    5.063   0.000
+ unlawful.id.au  131.107.13.100   2 u    7   64    1   33.771   10.052   0.000
+ golem.canonical 140.203.204.77   2 u    8   64    1  153.101    3.706   0.000
+```
+
+If you are done, go ahead and take down and destroy your `vagrant` box
+ 
+```
+cd vagrant
+vagrant destroy -f
+cd ..
+deactivate
+```
+ 
