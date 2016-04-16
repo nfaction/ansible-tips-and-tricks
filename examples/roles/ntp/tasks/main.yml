@@ -1,0 +1,43 @@
+---
+
+# tasks file for ntp
+- name: gather os specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+    - "{{ ansible_distribution }}.yml"
+  tags: vars
+
+- name: install ntp package
+  action: >
+    {{ ansible_pkg_mgr }} name={{ NTP_PACKAGE.name }} state={{ NTP_PACKAGE.state }}
+  tags: install
+
+- name: verify that ntp is installed
+  stat: path=/etc/ntp.conf
+  register: ntp_installed
+  tags: verify-ntp-is-installed
+
+- name: update system date manually
+  shell: ntpdate 1.us.pool.ntp.org
+  when: ntp_installed.stat.exists == False
+  tags: force-update
+
+# Only run if on a hardware system. i.e. non-vm
+- name: update hardware clock manually
+  shell: hwclock --systohc
+  when: ntp_installed.stat.exists == False
+  tags: set-hw-clock
+
+- name: configure ntp
+  template: src={{ item }} dest={{ NTP_CONFIG }}
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.ntp.conf.j2"
+    - "{{ ansible_distribution }}.ntp.conf.j2"
+    - "ntp.conf.j2"
+  tags: template-ntp-conf
+
+- name: start ntp service
+  action: >
+    service name={{ NTP_SERVICE }} state=started enabled=yes
+  tags: restart-ntp

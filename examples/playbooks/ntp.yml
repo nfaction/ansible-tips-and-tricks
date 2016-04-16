@@ -1,0 +1,5 @@
+---
+- name: install and configure NTP
+  hosts: examples
+  roles:
+    - ntp

@@ -1,0 +1,8 @@
+restrict 127.0.0.1
+restrict ::1
+
+{% for ntp_server in NTP_SERVERS %}
+server {{ ntp_server }}
+{% endfor %}
+
+driftfile /etc/ntp/drift
