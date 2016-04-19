@@ -54,10 +54,8 @@ Follow these steps to get started:
 	cd vagrant
 	vagrant up
 	vagrant ssh
-	sudo su -
-	vi /root/.ssh/authorized_keys
+	sudo vi /root/.ssh/authorized_keys
 	<Insert your public key, save and exit>
-	exit
 	exit
 	cd ..
 	```
