@@ -20,7 +20,7 @@ Steps to install:
 	cd ansible-tips-and-tricks/examples
 	```
 	
-1. Follow installation steps for both Ansible 2.0 and 1.9 [here.](docs/ansible/install.md)
+1. Follow installation steps for both Ansible 2.0 and 1.9 [here.](../docs/ansible/install.md)
 
 1. Activate the Ansible Environment
 
