@@ -1,4 +1,4 @@
-# Running Modules Manually
+# Running Ad Hoc Commands
 
 The basic syntax consists of `ansible` then the host group from `hosts` to run against, `-m <MODULE_NAME>`, and optionally providing arguments via `-a "OPT_ARGS"`
 
@@ -54,4 +54,10 @@ Limit to multiple hosts
 
 ```
 ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit "host1,host2"
+```
+
+Negated limit. **NOTE:** Single quotes MUST be used to prevent bash interpolation.
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit 'all:!host1'
 ```
