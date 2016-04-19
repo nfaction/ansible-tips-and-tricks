@@ -1,5 +1,6 @@
 ---
 - name: set up and configure SSH
   hosts: examples
+  remote_user: root
   roles:
     - ssh

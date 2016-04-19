@@ -58,6 +58,14 @@ Follow these steps to get started:
 	<Insert your public key, save and exit>
 	exit
 	cd ..
+
+	OR
+
+	cd vagrant
+	vagrant up
+	cd ..
+	source ansible2.0/bin/activate
+	ansible-playbook playbooks/copy_ssh_keys.yml -i hosts --ask-pass  # enter 'vagrant' as password
 	```
 	
 ## Verify that Ansible is configured
@@ -66,7 +74,7 @@ First ensure that the environment is set up and running and able to run these ex
 Perform a simple `ping` test
 
 ```
-ansible examples -m ping -i hosts
+ansible examples -m ping -i hosts --limit "single-ubuntu"
 ```
 
 You should see this if things worked correctly:
@@ -99,7 +107,7 @@ Ensure that your Ansible environment has been loaded, and your `vagrant` box is 
 Run the `ntp.yml` playbook:
 
 ```
-ansible-playbook playbooks/ntp.yml -i hosts
+ansible-playbook playbooks/ntp.yml -i hosts --limit "single-ubuntu"
 ```
 
 You should see something similar to this:

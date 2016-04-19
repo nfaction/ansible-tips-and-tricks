@@ -1,5 +1,6 @@
 ---
 - name: install and configure NTP
   hosts: examples
+  remote_user: root
   roles:
     - ntp
