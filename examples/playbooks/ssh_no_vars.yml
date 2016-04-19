@@ -1,0 +1,5 @@
+---
+- name: set up and configure SSH
+  hosts: examples
+  roles:
+    - ssh

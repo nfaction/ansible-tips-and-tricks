@@ -35,12 +35,12 @@
 
 - name: add ssh keys to authorized_keys
   authorized_key: user=root key="{{ item }}" state=present
-  with_items: SSH_KEYS_ADD
+  with_items: "{{ SSH_KEYS_ADD }}"
   tags: add-ssh-keys
 
 - name: remove ssh keys from authorized_keys
   authorized_key: user=root key="{{ item }}" state=absent
-  with_items: SSH_KEYS_REMOVE
+  with_items: "{{ SSH_KEYS_REMOVE }}"
   tags: remove-ssh-keys
 
 - name: disable selinux
