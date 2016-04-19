@@ -1,0 +1,5 @@
+---
+# handlers file for ssh
+- name: restart ssh service
+  action: >
+    service name={{ SSH_SERVICE }} state=restarted
