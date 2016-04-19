@@ -1,6 +1,6 @@
 ---
 
-SSH_PORT: 2222
+SSH_PORT: 22
 
 SSH_CONFIG: /etc/ssh/sshd_config
 

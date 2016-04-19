@@ -2,4 +2,5 @@
 
 [examples]
 #remote_host ansible_host=X.X.X.X ansible_port=22
+# Vagrant uses a Virtualbox port forward from the VMs port 22 to host systems port 2222
 vagrant-box ansible_host=127.0.0.1 ansible_port=2222 ansible_user=root
