@@ -164,3 +164,6 @@ Other times, Ansible's modules either aren't well defined yet, or simply do not 
 The main differences between the two comes down to what kind of command one wishes to run.  If the command uses IO redirection of ANY sort, use `shell`.  If the command only contains CLI flags, `command` module will suffice.
 
 ## Write your own module
+There is a wealth of modules available, and writing your own should only be done as an absolute last resort.
+
+If you still wish to write your own, take a look at the docs here: <http://docs.ansible.com/ansible/developing_modules.html>
