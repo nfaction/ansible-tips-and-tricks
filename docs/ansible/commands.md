@@ -36,12 +36,37 @@ Modify file using `lineinfile`
 ansible all -m lineinfile -a "dest=/etc/group regexp='^(users:x:100:)(.*)' line='\1ldapusername,\2' state=present backrefs=yes"
 ```
 
-# Troubleshooting Modules
+# Running Ansible as a different user
+
+There are multiple ways to control which user account is used when executing Ansible.  It can be controlled via a user's `~/.ssh/config`, via `remote_user` in Ansible or through the Ansible inventory.
+
+This has changed drastically between Ansible versions pre-2.0 and post 2.0
+
+Follow this [link](http://docs.ansible.com/ansible/become.html#for-those-from-pre-1-9-sudo-and-su-still-work) to see how this can be done.
+
+When running from the command line, one can just specify which user account to run against directly.  Please note that specifying a user can sometime conflict with a user defined in `/etc/ansible/hosts`
+
+Specifying a user:
+
+```
+ansible-playbook playbooks/atmo_playbook.yml --user atmouser
+```
+
+# Passing Variables via CLI
+
+Variables can be pesky, but sometimes are required to be passed in via the CLI.  Any variable can be set via the command line.  Often the command line is the be all, end all in variable overrides.
+
+Passing arguments:
+
+```
+ansible-playbook playbooks/atmo_playbook.yml -e "ATMOUSERNAME=atmouser"
+```
+
+# Limiting Playbook/Task Runs
 
 When writing Ansible, sometimes it is tedious to make a change in a `playbook` or `task`, then run the `playbook`  It can sometimes be very helpful to run a module directly as shown above, but only against a single development host.
 
-## Limiting Hosts
-
+## Limit to one or more hosts
 This is required when one wants to run a `playbook` against a host group, but only against one or more members of that group.
 
 Limit to one host
@@ -60,4 +85,59 @@ Negated limit. **NOTE:** Single quotes MUST be used to prevent bash interpolatio
 
 ```
 ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit 'all:!host1'
+```
+
+Limit to host group
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --limit 'group1'
+```
+
+## Limiting Tasks with Tags
+
+Limit to all tags matching `install`
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --tags 'install'
+```
+
+Skip any tag matching `sudoers`
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --tags 'sudoers'
+```
+
+# Troubleshooting Ansible
+
+<http://docs.ansible.com/ansible/playbooks_checkmode.html>
+
+## Busted Cache
+Sometimes Ansible has a tendency to hold on to variables too long, which causes Ansible to think that a task/operation had already been done or changed when in fact it didn't.
+
+A simple fix is to flush the `redis` cache during a code execution.
+
+This can be done like this:
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --flush-cache
+```
+
+## Check for bad syntax
+
+One can check to see if code contains any syntax errors by running the playbook.
+
+Check for bad syntax:
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --syntax-check
+```
+
+## Running a playbook in dry-run mode
+
+Sometimes it can be useful to see what Ansible might do, but without actually changing anything.  
+
+One can run in dry-run mode like this:
+
+```
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --check
 ```
