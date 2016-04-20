@@ -52,6 +52,12 @@ Specifying a user:
 ansible-playbook playbooks/atmo_playbook.yml --user atmouser
 ```
 
+Using a specific `SSH` private key:
+
+```
+ansible -m ping hosts --private-key=~/.ssh/keys/id_rsa -u centos
+```
+
 # Passing Variables via CLI
 
 Variables can be pesky, but sometimes are required to be passed in via the CLI.  Any variable can be set via the command line.  Often the command line is the be all, end all in variable overrides.
@@ -141,3 +147,20 @@ One can run in dry-run mode like this:
 ```
 ansible-playbook playbooks/PLAYBOOK_NAME.yml --check
 ```
+
+# When all else fails
+
+## Modules
+Sometimes Ansible just can't cut performing a task using the built-in modules.  Raw module to the rescue!
+
+Using `raw` module to run command similar to running directly via `SSH`:
+
+```
+ansible -m raw -s -a "yum install libselinux-python -y" new-atmo-images
+```
+
+Other times, Ansible's modules either aren't well defined yet, or simply do not exist.  This is a use case for using `shell` and `command` modules.  More information for [shell](http://docs.ansible.com/ansible/shell_module.html) and [command](http://docs.ansible.com/ansible/command_module.html) modules.
+
+The main differences between the two comes down to what kind of command one wishes to run.  If the command uses IO redirection of ANY sort, use `shell`.  If the command only contains CLI flags, `command` module will suffice.
+
+## Write your own module
