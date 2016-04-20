@@ -1,1 +1,0 @@
-{"rsync":{"/home/vagrant/sync":{"type":"rsync","guestpath":"/home/vagrant/sync","hostpath":"/Users/mattd/bin/ansible-tips-and-tricks/examples/vagrant/multi_os_vagrant","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
