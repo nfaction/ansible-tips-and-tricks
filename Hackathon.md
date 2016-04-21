@@ -60,10 +60,10 @@
 	exit
 	
 	# Copy in SSH keys
-	ansible-playbook playbooks/copy_ssh_keys.yml -i hosts --limit single-ubuntu --ask-pass
+	ansible-playbook playbooks/copy_ssh_keys.yml -i hosts --limit single-ubuntu --ask-pass -u vagrant
 	
 	# Test SSH login as 'root'
-	ansible examples -m ping -i hosts --limit single-ubuntu -u vagrant
+	ansible examples -m ping -i hosts --limit single-ubuntu -u root
 	```
 	
 ## What just happened
