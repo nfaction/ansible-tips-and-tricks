@@ -30,7 +30,7 @@
 	sudo apt-get install vagrant
 	```
 
-## Basic Ansible Demo using Vagrant
+## Basic Ansible Ping Demo using Vagrant
 
 1. Clone this repo and get started:
 
@@ -49,6 +49,8 @@
 	
 1. Create Ansible VirtualEnvs for 2.0 and 1.9 as shown [here.](docs/ansible/install.md)
 
+1. Activate Ansible 2.0 Environment
+
 1. Now that your Vagrant box is up, set up SSH keys
 
 	```
@@ -63,3 +65,24 @@
 	# Test SSH login as 'root'
 	ansible examples -m ping -i hosts --limit single-ubuntu
 	```
+	
+## What just happened
+
+1. How do `hosts` files work?  And how does 1.9 vs 2.0 differ.
+
+	```
+	vim hosts_1.9
+	vim hosts_2.0
+	```
+	
+	Please take note of the symbolic link for `hosts`
+	
+	```
+	hosts -> hosts_2.0
+	```
+	
+1. Take note of how the `limit` is used to prevent non-running hosts from failing.
+1. Demo SSH and NTP playbooks
+2. Show how `group_vars` are used
+3. Start up other Vagrant boxes to demo multiple OSes
+4. Re-run Ansible to reflect differences.
