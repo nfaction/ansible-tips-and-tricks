@@ -47,8 +47,19 @@
 	cd ../
 	```
 	
-1. Create Ansible VirtualEnvs
+1. Create Ansible VirtualEnvs for 2.0 and 1.9 as shown [here.](docs/ansible/install.md)
+
+1. Now that your Vagrant box is up, set up SSH keys
 
 	```
+	# Test logging in via SSH
+	ssh -p 2222 vagrant@127.0.0.1
+	# Enter password: 'vagrant'
+	exit
 	
+	# Copy in SSH keys
+	ansible-playbook playbooks/copy_ssh_keys.yml -i hosts --limit single-ubuntu --ask-pass
+	
+	# Test SSH login as 'root'
+	ansible examples -m ping -i hosts --limit single-ubuntu
 	```
