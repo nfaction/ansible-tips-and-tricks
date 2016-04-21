@@ -86,3 +86,4 @@
 2. Show how `group_vars` are used
 3. Start up other Vagrant boxes to demo multiple OSes
 4. Re-run Ansible to reflect differences.
+5. Walk through Ansible examples and show how each sub-directory is used within Ansible
