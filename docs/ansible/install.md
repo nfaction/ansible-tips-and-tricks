@@ -4,6 +4,15 @@ The instructions provided here is used to setup Ansible for managing other syste
 
 ## Using pip
 
+### Ansible 2.1
+```
+pip install --upgrade pip virtualenv virtualenvwrapper
+virtualenv ansible2.1
+source ansible2.1/bin/activate
+pip install git+git://github.com/ansible/ansible.git@stable-2.1
+pip install redis
+```
+
 ### Ansible 2.0
 ```
 pip install --upgrade pip virtualenv virtualenvwrapper
