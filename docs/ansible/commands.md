@@ -163,6 +163,34 @@ Other times, Ansible's modules either aren't well defined yet, or simply do not 
 
 The main differences between the two comes down to what kind of command one wishes to run.  If the command uses IO redirection of ANY sort, use `shell`.  If the command only contains CLI flags, `command` module will suffice.
 
+## Checking Redis
+Sometimes it may be neccessary to manually check Redis for gathered facts from a remote host.  Redis is the default back-end for Ansible and usually is running as a server under `127.0.0.1`.  One can check Redis by performing the following steps:
+
+1. Log in to Ansible controller, if Ansible is not running on your local machine
+1. Login to Redis
+	
+	```
+	redis-cli
+	```
+	
+1. List all stored entries for Ansible
+
+	```
+	KEYS ansible*
+	```	
+
+1. Find the entry for the remote host and display the gathered facts for that host
+
+	```
+	MGET "ansible_factsXXX.XXX.XXX.XXX"
+	```
+
+1. Exit Redis
+
+	```
+	quit
+	```
+
 ## Write your own module
 There is a wealth of modules available, and writing your own should only be done as an absolute last resort.
 

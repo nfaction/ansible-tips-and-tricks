@@ -74,7 +74,7 @@ First ensure that the environment is set up and running and able to run these ex
 Perform a simple `ping` test
 
 ```
-ansible examples -m ping -i hosts --limit "single-ubuntu"
+ansible examples -m ping -i hosts --limit "single-ubuntu" - u root
 ```
 
 You should see this if things worked correctly:
@@ -107,13 +107,13 @@ Ensure that your Ansible environment has been loaded, and your `vagrant` box is 
 Run the `ntp.yml` playbook:
 
 ```
-ansible-playbook playbooks/ntp.yml -i hosts --limit "single-ubuntu"
+ansible-playbook playbooks/ntp.yml -i hosts --limit "single-ubuntu" -u root
 ```
 
 You should see something similar to this:
 
 ```
-(ansible2.0):examples $ ansible-playbook playbooks/ntp.yml -i hosts
+(ansible2.0):examples $ ansible-playbook playbooks/ntp.yml -i hosts -u root
 
 PLAY [install and configure NTP] ***********************************************
 
