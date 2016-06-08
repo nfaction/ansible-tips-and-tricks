@@ -43,3 +43,39 @@ Switch to version 1.9
 git checkout stable-1.9
 source ansible/hacking/env-setup
 ```
+
+# Installation on a Mac
+
+One could just simply `brew` install Ansible, but it does not always set up the system to run Ansible correctly.  If while running Ansible an error is displayed regarding logs or permissions, run the following:
+
+```
+sudo mkdir -p /var/log/ansible
+sudo touch /var/log/ansible/ansible.log
+sudo chown -R ${USER}:wheel /var/log/ansible
+sudo chmod 775 /var/log/ansible
+sudo chmod 774 /var/log/ansible/ansible.log
+```
+
+# Installing on Ubuntu
+
+Simply install using `apt` then run Python VirtualEnv
+
+```
+sudo apt-get install ansible
+```
+
+Then follow the procedure in the first section of this document
+
+# Troubleshooting SSH Connections
+
+Sometimes when attempting an initial Ansible `ping`, it can fail in a very confusing way.  If this happens, try adding something like this to your `~/.ssh/config` file:
+
+```
+Host <hostname-prefix>*
+  Port 22
+  User <ssh-login-username>
+  StrictHostKeyChecking=no
+  UserKnownHostsFile=/dev/null
+```
+
+Where anything between `< >` needs to be changed.
