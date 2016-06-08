@@ -108,3 +108,55 @@ verbose = True
 # Print debugging output (set logging level to DEBUG instead of default WARNING level).
 # debug = False
 ```
+
+## Using RegEx
+
+Ansible uses Python's Regular Expressions to modify files with modules like `lineinfile`.  Since everyone loves RegEx, but hates writing them, having tools to make it easier always helps.
+
+To see what RegEx are available, see this page: <https://docs.python.org/2/library/re.html>
+
+When work has begun, it is often hard to tell without running code if it is working or not.  This incredibly helpful site can help verify your RegEx: <http://pythex.org/>
+
+One last major caveat is that Python RE is different in that what works in vanilla Python code for Regular Expressions, do not often do well when being present in YAML.  For this reason, be sure that every RE is double escaped when put into Ansible.  See the example below:
+
+### Python RE
+
+RegEx Checker: <http://pythex.org/>
+
+Regular Expression:
+
+```
+^{{ ATMOUSERNAME }}\s+ALL=\(ALL\)\s*ALL
+```
+
+Test string:
+
+```
+{{ ATMOUSERNAME }} ALL=(ALL)ALL
+```
+
+Matched string (Ensure that entire matched result is GREEN):
+
+```
+{{ ATMOUSERNAME }} ALL=(ALL)ALL
+```
+
+### Python RE in Ansible
+
+Python Regular Expression:
+
+```
+^{{ ATMOUSERNAME }}\s+ALL=\(ALL\)\s*ALL
+```
+
+Ansible Regular Expression:
+
+```
+^{{ ATMOUSERNAME }}\\s+ALL=\\(ALL\\)\\s*ALL
+```
+
+Usage example:
+
+```
+- lineinfile: dest=/etc/sudoers backup=yes regexp="^{{ ATMOUSERNAME }}\\s+ALL=\\(ALL\\)\\s*ALL" line="{{ ATMOUSERNAME }} ALL=(ALL) ALL" state=present
+```
