@@ -56,6 +56,31 @@ sudo chmod 775 /var/log/ansible
 sudo chmod 774 /var/log/ansible/ansible.log
 ```
 
+# Download `ansible.cfg`
+## Fresh copy without changes
+
+```
+wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg
+```
+
+Then one might consider changing the following default parameters:
+
+Update `hostfile`
+
+```
+hostfile       = inventories/hosts
+```
+
+## Our version of `ansible.cfg`
+
+```
+wget https://raw.githubusercontent.com/cyverse/ansible-tips-and-tricks/master/ansible.cfg
+```
+
+```
+wget -O <path-to-ansible-dir>/ansible.cfg https://raw.githubusercontent.com/cyverse/ansible-tips-and-tricks/master/ansible.cfg
+```
+
 # Installing on Ubuntu
 
 Simply install using `apt` then run Python VirtualEnv
