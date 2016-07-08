@@ -110,7 +110,7 @@ ansible-playbook playbooks/PLAYBOOK_NAME.yml --tags 'install'
 Skip any tag matching `sudoers`
 
 ```
-ansible-playbook playbooks/PLAYBOOK_NAME.yml --tags 'sudoers'
+ansible-playbook playbooks/PLAYBOOK_NAME.yml --skip-tags 'sudoers'
 ```
 
 # Troubleshooting Ansible
