@@ -194,6 +194,16 @@ Sometimes it may be neccessary to manually check Redis for gathered facts from a
 	quit
 	```
 
+Manually flushing controller's redis cache
+
+```
+ansible localhost -m redis -a "command=flush flush_mode=all" -c local
+```
+
+Running Redis on OS X as a daemon
+
+<http://naleid.com/blog/2011/03/05/running-redis-as-a-user-daemon-on-osx-with-launchd>
+
 ## Write your own module
 There is a wealth of modules available, and writing your own should only be done as an absolute last resort.
 
