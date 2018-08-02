@@ -1,10 +1,10 @@
 ---
 
 [examples:children]
-single-ubuntu
+single-box
 multi-os
 
-[single-ubuntu]
+[single-box]
 #remote_host ansible_ssh_host=X.X.X.X ansible_ssh_port=22
 # Vagrant uses a Virtualbox port forward from the VMs port 22 to host systems port 2222
 vagrant-box ansible_ssh_host=127.0.0.1 ansible_ssh_port=2222
