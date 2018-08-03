@@ -10,7 +10,7 @@
 # possible, but leave them commented.  Uncommented options change a
 # default value.
 
-Port {{ SSH_PORT }}
+Port {{ ssh_port }}
 #Protocol 2,1
 Protocol 2
 #AddressFamily any
@@ -120,4 +120,4 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 UseDNS no
 GSSAPIAuthentication no
 
-AllowGroups {{ SSH_ALLOW_GROUPS | join(' ') }}
+AllowGroups {{ ssh_allow_groups | join(' ') }}

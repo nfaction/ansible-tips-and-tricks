@@ -14,7 +14,7 @@
 # SELinux about this change.
 # semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
 #
-Port {{ SSH_PORT }}
+Port {{ ssh_port }}
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -156,4 +156,4 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 #	AllowTcpForwarding no
 #	ForceCommand cvs server
 
-AllowGroups {{ SSH_ALLOW_GROUPS | join(' ') }}
+AllowGroups {{ ssh_allow_groups | join(' ') }}

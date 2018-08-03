@@ -1,5 +1,5 @@
 ---
-# tasks file for ssh
+
 - name: gather os specific variables
   include_vars: "{{ item }}"
   with_first_found:
@@ -10,56 +10,83 @@
 
 - name: install ssh server
   action: >
-    {{ ansible_pkg_mgr }} name={{ SSH_PACKAGE.name }} state={{ SSH_PACKAGE.state }}
+    {{ ansible_pkg_mgr }} name={{ ssh_package }} state=latest
   tags: install
 
 - name: copy motd.ssh
-  copy: src=motd.ssh dest=/etc/motd.ssh mode=0444
+  copy:
+    src: motd.ssh
+    dest: /etc/motd.ssh
+    mode: 0444
   tags: copy-motd
 
 - name: configure ssh
-  template: src={{ item }} dest={{ SSH_CONFIG }} backup=yes
+  template:
+    src: "{{ item }}"
+    dest: "{{ ssh_config }}"
+    backup: yes
   with_first_found:
     - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.sshd_config.j2"
     - "{{ ansible_distribution }}.sshd_config.j2"
   tags: template-sshd-config
 
 - name: start ssh service
-  action: >
-    service name={{ SSH_SERVICE }} state=started enabled=yes
+  service:
+    name: "{{ ssh_service }}"
+    state: started
+    enabled: yes
   tags: start-ssh
 
 - name: make sure ssh directory exists
-  file: path=/root/.ssh/ state=directory mode="0700"
+  file:
+    path: /root/.ssh/
+    state: directory
+    mode: "0700"
   tags: create-root-ssh-dir
 
 - name: add ssh keys to authorized_keys
-  authorized_key: user=root key="{{ item }}" state=present
-  with_items: "{{ SSH_KEYS_ADD }}"
+  authorized_key:
+    user: root
+    key: "{{ item }}"
+    state: present
+  with_items: "{{ ssh_keys_to_add }}"
   tags: add-ssh-keys
 
 - name: remove ssh keys from authorized_keys
-  authorized_key: user=root key="{{ item }}" state=absent
-  with_items: "{{ SSH_KEYS_REMOVE }}"
+  authorized_key:
+    user: root
+    key: "{{ item }}"
+    state: absent
+  with_items: "{{ ssh_keys_to_remove }}"
   tags: remove-ssh-keys
 
 - name: disable selinux
-  selinux: state=disabled
-  when: ansible_os_family == "RedHat"
+  selinux:
+    state: disabled
+  when:
+    - ansible_os_family == "RedHat"
   tags: disable-centos-selinux
 
 - name: add ssh port to selinux
-  command: semanage port -a -t ssh_port_t -p tcp {{ SSH_PORT }}
-  when: ansible_os_family == "RedHat" and {{ SSH_PORT }} != '22'
+  command: semanage port -a -t ssh_port_t -p tcp {{ ssh_port }}
+  when:
+    - ansible_os_family == "RedHat"
+    - ssh_port != "22"
   ignore_errors: yes
   tags: add-ssh-port-semanage
 
 - name: remove old ssh port to selinux (if applicable)
   command: semanage port -d -t ssh_port_t -p tcp 22
-  when: ansible_os_family == "RedHat" and {{ SSH_PORT }} != '22'
+  when:
+    - ansible_os_family == "RedHat"
+    - ssh_port != "22"
   ignore_errors: yes
   tags: remove-old-ssh-port-semanage
 
 - name: restart ssh service
-  service: name={{ SSH_SERVICE }} state=restarted enabled=yes
+  service:
+    name: "{{ ssh_service }}"
+    state: restarted
+    enabled: yes
   tags: restart-ssh
+

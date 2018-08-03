@@ -1,9 +1,8 @@
 ---
 
-SSH_PACKAGE:
-  name: openssh-server
-  state: latest
+ssh_package: openssh-server
 
-SSH_SERVICE: ssh
+ssh_service: ssh
 
-SSH_CONFIG: /etc/ssh/sshd_config
+ssh_config: /etc/ssh/sshd_config
+

@@ -2,7 +2,7 @@
 # See the sshd_config(5) manpage for details
 
 # What ports, IPs and protocols we listen for
-Port {{ SSH_PORT }}
+Port {{ ssh_port }}
 # Use these options to restrict which interfaces/protocols sshd will bind to
 #ListenAddress ::
 #ListenAddress 0.0.0.0
@@ -87,4 +87,4 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
 
-AllowGroups {{ SSH_ALLOW_GROUPS | join(' ') }}
+AllowGroups {{ ssh_allow_groups | join(' ') }}
