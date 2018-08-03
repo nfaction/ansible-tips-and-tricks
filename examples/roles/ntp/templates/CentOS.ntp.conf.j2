@@ -14,7 +14,7 @@ restrict -6 ::1
 
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
-{% for ntp_server in NTP_SERVERS %}
+{% for ntp_server in ntp_servers %}
 server {{ ntp_server }}
 {% endfor %}
 

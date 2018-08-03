@@ -1,7 +1,8 @@
-NTP_PACKAGE:
-  name: ntp
-  state: installed
+---
 
-NTP_SERVICE: ntp
+ntp_package: ntp
 
-NTP_CONFIG: /etc/ntp.conf
+ntp_service: ntp
+
+ntp_config: /etc/ntp.conf
+

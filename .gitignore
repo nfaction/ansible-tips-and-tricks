@@ -1,0 +1,6 @@
+# Files to ignore
+*.retry
+*.swp
+examples/ansible.log
+examples/vagrant/.vagrant/
+examples/vagrant/*.log
