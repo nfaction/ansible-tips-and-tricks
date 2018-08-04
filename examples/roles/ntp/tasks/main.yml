@@ -9,7 +9,7 @@
 
 - name: install ntp package
   action: >
-    {{ ansible_pkg_mgr }} name={{ ntp_package }} state=installed
+    {{ ansible_pkg_mgr }} name={{ ntp_package }} state=installed update_cache=yes
   tags: install
 
 - name: verify that ntp is installed

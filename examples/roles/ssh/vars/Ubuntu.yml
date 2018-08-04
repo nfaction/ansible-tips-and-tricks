@@ -1,5 +1,7 @@
 ---
 
+package_dependencies: []
+
 ssh_package: openssh-server
 
 ssh_service: ssh

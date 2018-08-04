@@ -1,5 +1,8 @@
 ---
 
+package_dependencies:
+  - policycoreutils-python
+
 ssh_package: openssh-server
 
 ssh_service: sshd
