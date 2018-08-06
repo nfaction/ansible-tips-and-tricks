@@ -1,12 +1,16 @@
 ---
 - name: copy keys
-  hosts: examples
+  hosts: all
   remote_user: vagrant
   tasks:
     - name: copy key to root
-      authorized_key: user=root key="{{ lookup('file', '{{ item }}') }}" state=present
+      authorized_key:
+        user: root
+        key: "{{ lookup('file', '{{ item }}') }}"
+        state: present
       with_items:
         - "~/.ssh/id_rsa.pub"
         - "../vagrant/ssh_keys/key-to-use.pub"
       become: yes
       become_method: sudo
+
