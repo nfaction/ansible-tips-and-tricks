@@ -6,7 +6,7 @@
     - name: copy key to root
       authorized_key:
         user: root
-        key: "{{ lookup('file', '{{ item }}') }}"
+        key: '{{ lookup("file", "{{ item }}") }}'
         state: present
       with_items:
         - "~/.ssh/id_rsa.pub"
