@@ -7,6 +7,5 @@ SSH private/public keypairs are used to login to a system with or without a pass
 The following command will generate two files, a `<your_key_file_name>` and `<your_key_file_name>.pub` in the `~/.ssh/` directory.
 
 ```
-/usr/bin/ssh-keygen -N '' -t rsa -b 2048 -f ~/.ssh/<your_key_file_name> -C <your_key_name>
+$ ssh-keygen -N '' -t rsa -b 2048 -f ~/.ssh/<your_key_file_name> -C <your_key_name>
 ```
-
