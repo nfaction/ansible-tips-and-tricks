@@ -3,4 +3,5 @@
 *.swp
 examples/ansible.log
 examples/vagrant/.vagrant/
+examples/vagrant/multi_os_vagrant/.vagrant/
 examples/vagrant/*.log
