@@ -1,22 +1,33 @@
 # Ansible Tips and Tricks
 
-This repo contains the file structure required for ReadTheDocs.  The RTD site can be found here: <http://ansible-tips-and-tricks.readthedocs.org/>
+## Overview
+
+This repository contains some example Ansible playbooks/roles to better understand how to use Ansible.
+
+Supplemental Ansible Documenation can be found [here.](https://github.com/nfaction/ansible-tips-and-tricks/wiki) 
 
 
-# Our Repositories
+## Other Ansible Resources
 
-## Example Ansible
+### Demo and Examples
 
 To learn how to use and install Ansible, follow the link below.
 
-Complete examples of Ansible Playbooks and Roles can also be found in this repository.  Feel free to check them our here: <https://github.com/cyverse/ansible-tips-and-tricks/tree/master/examples>
+Complete examples of Ansible Playbooks and Roles can also be found in this repository.  Feel free to check them our here: <https://github.com/nfaction/ansible-tips-and-tricks/tree/master/examples>
 
-## Current Projects using Ansible
+### Other helpful resources
 
-Atmosphere Instance Deployment: <https://github.com/iPlantCollaborativeOpenSource/atmosphere-ansible>
-
-Atmosphere Deployment Tool: <https://github.com/iPlantCollaborativeOpenSource/clank>
-
-Discovery Environment: <https://github.com/cyverse/DE>
-
-OpenStack Deployment: <https://github.com/cyverse/ansible-openstack>
+* Documentation
+    * Latest Ansible Documentation: <https://docs.ansible.com/ansible/latest/user_guide/index.html>
+    * Archived Ansible 1.9 Documentation: <http://ansible-manual.readthedocs.io/en/stable-1.9/intro.html>
+* Testing Ansible
+    * Testing Syntax: <https://github.com/willthames/ansible-lint>
+    * Testing Code:
+        * If you don't have test infrastructure: <https://blog.travis-ci.com/2017-11-30-testing-ansible-roles-using-docker-on-travis>
+        * If you want to host your own test infrastructure: <https://blog.travis-ci.com/2017-11-30-testing-ansible-roles-using-docker-on-travis>
+* Example Ansible
+    * Rclone: <https://github.com/nfaction/ansible-rclone>
+    * Running Docker containers via Systemd: <https://github.com/nfaction/ansible-systemd-docker>
+    * Preparing hosts for OpenStack Ansible deploy: <https://github.com/cyverse/openstack-ansible-host-prep>
+    * OpenStack Instance Provisioner: <https://github.com/nfaction/atmosphere-ansible>
+    * Deploying OpenStack Liberty: <https://github.com/nfaction/ansible-openstack>
