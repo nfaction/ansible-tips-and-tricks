@@ -344,6 +344,6 @@ Ansible SSH Role: [ssh](https://github.com/nfaction/ansible-tips-and-tricks/tree
 
 ### NTP Role
 
-Ansible NTP Playbook: [ssh.yml](https://github.com/nfaction/ansible-tips-and-tricks/blob/master/examples/playbooks/ntp.yml)
+Ansible NTP Playbook: [ntp.yml](https://github.com/nfaction/ansible-tips-and-tricks/blob/master/examples/playbooks/ntp.yml)
 
-Ansible NTP Role: [ssh](https://github.com/nfaction/ansible-tips-and-tricks/tree/master/examples/roles/ntp)
+Ansible NTP Role: [ntp](https://github.com/nfaction/ansible-tips-and-tricks/tree/master/examples/roles/ntp)
